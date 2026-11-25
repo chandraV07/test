@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Food Order Billing</title>
+
+    <style>
+        body {
+            background-color: lavender;
+            font-family: Georgia;
+            text-align: center;
+        }
+
+        h1 {
+            color: darkslateblue;
+            font-size: 36px;
+        }
+
+        h2 {
+            color: purple;
+            font-size: 27px;
+        }
+
+        label {
+            color: darkmagenta;
+            font-size: 18px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 8px;
+            font-size: 16px;
+            border: 2px solid plum;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: darkslateblue;
+            color: white;
+            padding: 12px 25px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+        }
+
+        button:hover {
+            background-color: purple;
+        }
+
+        p {
+            color: darkslateblue;
+            font-size: 19px;
+            line-height: 1.8;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <h1>Food Order Billing</h1>
+
+    <label>Customer Name:</label>
+    <input type="text" id="name" placeholder="Enter name">
+    <br><br>
+
+    <label>Food Item Name:</label>
+    <input type="text" id="food" placeholder="Enter food item">
+    <br><br>
+
+    <label>Price per Item:</label>
+    <input type="number" id="price" placeholder="Enter price">
+    <br><br>
+
+    <label>Quantity:</label>
+    <input type="number" id="quantity" placeholder="Enter quantity">
+    <br><br>
+
+    <label>Delivery Distance (km):</label>
+    <input type="number" id="distance" placeholder="Enter distance">
+    <br><br>
+
+    <button onclick="display()">Calculate Bill</button>
+
+    <h2>Billing Details</h2>
+
+    <p id="result"></p>
+
+    <script>
+
+        function calculateFoodCost(price, quantity) {
+            return price * quantity;
+        }
+
+        function calculateDeliveryCharge(distance) {
+            if (distance <= 5) {
+                return 30;
+            }
+            else {
+                return 30 + (distance - 5) * 10;
+            }
+        }
+
+        function calculateFinalBill(foodCost, deliveryCharge) {
+            return foodCost + deliveryCharge;
+        }
+
+        function display() {
+
+            let name = document.getElementById("name").value;
+            let food = document.getElementById("food").value;
+            let price = Number(document.getElementById("price").value);
+            let quantity = Number(document.getElementById("quantity").value);
+            let distance = Number(document.getElementById("distance").value);
+
+            let foodCost = calculateFoodCost(price, quantity);
+
+            let deliveryCharge = calculateDeliveryCharge(distance);
+
+            let finalBill = calculateFinalBill(foodCost, deliveryCharge);
+
+            document.getElementById("result").innerHTML =
+                "Customer Name: " + name + "<br>" +
+                "Food Item: " + food + "<br>" +
+                "Price: " + price + "<br>" +
+                "Quantity: " + quantity + "<br>" +
+                "Food Cost: " + foodCost + "<br>" +
+                "Delivery Charge: " + deliveryCharge + "<br>" +
+                "Final Bill: " + finalBill;
+
+        }
+
+    </script>
+
+</body>
+</html>
